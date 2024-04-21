@@ -12,7 +12,7 @@ export default function MealsItem({ meal }) {
     <li className="meal-item">
       <article>
         <img
-          src={`http://localhost:3000/${meal.image}`}
+          src={`https://react-food-app-bakend.vercel.app/${meal.image}`}
           aria-colcount={meal.name}
         />
         <div>
