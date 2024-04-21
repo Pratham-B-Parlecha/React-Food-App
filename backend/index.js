@@ -12,19 +12,17 @@ app.use(express.static("public"));
 
 app.use(
   cors({
-    origin: "https://react-food-app-gray.vercel.app/",
-    optionsSuccessStatus: 200,
+    origin: "https://react-food-app-gray.vercel.app",
     credentials: true,
     methods: ["GET, POST", "PUT", "DELETE"],
-    allowedHeaders: "Content-Type",
   })
 );
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 app.get("/meals", async (req, res) => {
   const  p = path.join(__dirname, 'data', 'available-meals.json');
