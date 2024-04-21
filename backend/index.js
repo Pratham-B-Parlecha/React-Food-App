@@ -38,7 +38,7 @@ app.post("/orders", async (req, res) => {
   if (
     orderData === null ||
     orderData.items === null ||
-    orderData.items === []
+    orderData.items.length === 0
   ) {
     return res.status(400).json({ message: "Missing data." });
   }
