@@ -19,7 +19,7 @@ export default function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
   const { data, isLoading, error, sendRequest, clearData } = useHttp(
-    "http://localhost:3000/orders",
+    "https://react-food-app-bakend.vercel.app/orders",
     requestConfig
   );
   const totalAmount = cartCtx.items.reduce(
