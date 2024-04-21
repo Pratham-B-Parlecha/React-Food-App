@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.use(cors({ origin: 'https://react-food-app-gray.vercel.app' }))
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
