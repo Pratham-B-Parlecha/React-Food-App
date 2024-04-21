@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import cors from "cors";
+import path from "path";
 
 import bodyParser from "body-parser";
 import express from "express";
@@ -14,7 +15,7 @@ app.use(
     origin: "https://react-food-app-gray.vercel.app/",
     optionsSuccessStatus: 200,
     credentials: true,
-  methods: ["GET, POST", "PUT", "DELETE"],
+    methods: ["GET, POST", "PUT", "DELETE"],
     allowedHeaders: "Content-Type",
   })
 );
@@ -26,7 +27,8 @@ app.use(
 // });
 
 app.get("/meals", async (req, res) => {
-  const meals = await fs.readFile("./data/available-meals.json", "utf8");
+  const  p = path.join(__dirname, 'data', 'available-meals.json');
+  const meals = await fs.readFile(p, "utf8");
   res.json(JSON.parse(meals));
 });
 
@@ -63,10 +65,11 @@ app.post("/orders", async (req, res) => {
     ...orderData,
     id: (Math.random() * 1000).toString(),
   };
-  const orders = await fs.readFile("./data/orders.json", "utf8");
+  const p = path.join(__dirname, 'data', 'orders.json');
+  const orders = await fs.readFile(p, "utf8");
   const allOrders = JSON.parse(orders);
   allOrders.push(newOrder);
-  await fs.writeFile("./data/orders.json", JSON.stringify(allOrders));
+  await fs.writeFile(p, JSON.stringify(allOrders));
   res.status(201).json({ message: "Order created!" });
 });
 
